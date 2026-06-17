@@ -1,0 +1,35 @@
+name: Sync fnm install script
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch install script
+        run: |
+          curl -fsSL https://fnm.vercel.app/install -o fnm-install.sh
+          chmod +x fnm-install.sh
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- fnm-install.sh; then
+            echo "No changes"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add fnm-install.sh
+          git commit -m "chore: sync fnm install script"
+          git push
