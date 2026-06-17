@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Fetch install script
         run: |
@@ -23,13 +23,14 @@ jobs:
 
       - name: Commit if changed
         run: |
-          if git diff --quiet -- fnm-install.sh; then
+          git add fnm-install.sh
+      
+          if git diff --cached --quiet; then
             echo "No changes"
             exit 0
           fi
-
+      
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add fnm-install.sh
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: sync fnm install script"
           git push
