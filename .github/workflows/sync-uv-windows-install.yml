@@ -1,0 +1,35 @@
+name: Sync uv install script (Windows)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Fetch install script
+        run: |
+          curl -fsSL https://astral.sh/uv/install.ps1 -o uv-install.ps1
+          chmod +x uv-install.ps1
+      - name: Commit if changed
+        run: |
+          git add uv-install.ps1
+      
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+      
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: sync uv install script (Windows)"
+          git push
