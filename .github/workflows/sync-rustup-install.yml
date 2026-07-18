@@ -1,0 +1,36 @@
+name: Sync rustup install script
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Fetch install script
+        run: |
+          curl -fsSL https://sh.rustup.rs -o rustup-install.sh
+          chmod +x rustup-install.sh
+
+      - name: Commit if changed
+        run: |
+          git add rustup-install.sh
+      
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+      
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: sync rustup install script"
+          git push
