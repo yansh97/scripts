@@ -24,19 +24,19 @@ has_local 2>/dev/null || alias local=typeset
 set -u
 
 APP_NAME="uv"
-APP_VERSION="0.12.10"
+APP_VERSION="0.12.11"
 if [ -n "${UV_DOWNLOAD_URL:-}" ]; then
     ARTIFACT_DOWNLOAD_URLS="$UV_DOWNLOAD_URL"
 elif [ -n "${INSTALLER_DOWNLOAD_URL:-}" ]; then
     ARTIFACT_DOWNLOAD_URLS="$INSTALLER_DOWNLOAD_URL"
 elif [ -n "${UV_INSTALLER_GHE_BASE_URL:-}" ]; then
     INSTALLER_BASE_URL="$UV_INSTALLER_GHE_BASE_URL"
-    ARTIFACT_DOWNLOAD_URLS="${INSTALLER_BASE_URL}/astral-sh/uv/releases/download/0.12.10"
+    ARTIFACT_DOWNLOAD_URLS="${INSTALLER_BASE_URL}/astral-sh/uv/releases/download/0.12.11"
 elif [ -n "${UV_INSTALLER_GITHUB_BASE_URL:-}" ]; then
     INSTALLER_BASE_URL="$UV_INSTALLER_GITHUB_BASE_URL"
-    ARTIFACT_DOWNLOAD_URLS="${INSTALLER_BASE_URL}/astral-sh/uv/releases/download/0.12.10"
+    ARTIFACT_DOWNLOAD_URLS="${INSTALLER_BASE_URL}/astral-sh/uv/releases/download/0.12.11"
 else
-    ARTIFACT_DOWNLOAD_URLS="https://releases.astral.sh/github/uv/releases/download/0.12.10 https://github.com/astral-sh/uv/releases/download/0.12.10"
+    ARTIFACT_DOWNLOAD_URLS="https://releases.astral.sh/github/uv/releases/download/0.12.11 https://github.com/astral-sh/uv/releases/download/0.12.11"
 fi
 if [ -n "${UV_PRINT_VERBOSE:-}" ]; then
     PRINT_VERBOSE="$UV_PRINT_VERBOSE"
@@ -66,7 +66,7 @@ fi
 AUTH_TOKEN="${UV_GITHUB_TOKEN:-}"
 
 read -r RECEIPT <<EORECEIPT
-{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"cargo-dist","version":"0.32.0"},"source":{"app_name":"uv","name":"uv","owner":"astral-sh","release_type":"github"},"version":"0.12.10"}
+{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"cargo-dist","version":"0.32.0"},"source":{"app_name":"uv","name":"uv","owner":"astral-sh","release_type":"github"},"version":"0.12.11"}
 EORECEIPT
 
 # Some Linux distributions don't set HOME
@@ -120,10 +120,10 @@ usage() {
     cat <<EOF
 uv-installer.sh
 
-The installer for uv 0.12.10
+The installer for uv 0.12.11
 
 This script detects what platform you're on and fetches an appropriate archive from
-https://releases.astral.sh/github/uv/releases/download/0.12.10
+https://releases.astral.sh/github/uv/releases/download/0.12.11
 then unpacks the binaries and installs them to the first of the following locations
 
     \$XDG_BIN_HOME
@@ -228,7 +228,7 @@ download_binary_and_run_installer() {
             _arch="aarch64-apple-darwin"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="51c6170e8e3a01cef9f33b94f582b7b81ac65046f55d40afb35f9cff5a68c179"
+            _checksum_value="e01b69ee15e81918d5e8fc9cf39b3db7f59c5576e5e306cd9b7aeb2c7b7321c3"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -242,7 +242,7 @@ download_binary_and_run_installer() {
             _arch="aarch64-pc-windows-msvc"
             _zip_ext=".zip"
             _checksum_style="sha256"
-            _checksum_value="ee985c51c0c9c1f82267a5d80f959b34a7ff888c109182bd3b2b35c4661bbcde"
+            _checksum_value="7a70f46305d28a95f913ef2888254a9f9c183a406daeeb8937134afc9ed434d2"
             _bins="uv.exe uvx.exe uvw.exe"
             _bins_js_array='"uv.exe","uvx.exe","uvw.exe"'
             _libs=""
@@ -256,7 +256,7 @@ download_binary_and_run_installer() {
             _arch="aarch64-unknown-linux-gnu"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="9ff6b9d4665edcdd3a88dcc73cd1eb641754deb927f14e8c62ebfde6bf4f5f5e"
+            _checksum_value="e9933d907fb9cd27d606d819bbded419f2844c0e2efc98225ecfa409288eb28d"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -270,7 +270,7 @@ download_binary_and_run_installer() {
             _arch="aarch64-unknown-linux-musl-static"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="3983cb642fae84eab33756109bb266f126eb61763d8d220dd662af589c5b3da5"
+            _checksum_value="de99cafdeb5ee6f61ac3acd6d9dc6a1ef166f9398fa5623c436246ee1ecea099"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -284,7 +284,7 @@ download_binary_and_run_installer() {
             _arch="arm-unknown-linux-musl-staticeabihf"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="984d3539667b2d97d85aa07788f78f3aa87accc9b27c63913c3177d118f5df81"
+            _checksum_value="dd8576a7194e69861cd9def865f3a26613bb116109f075e64925a38cdd509429"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -298,7 +298,7 @@ download_binary_and_run_installer() {
             _arch="armv7-unknown-linux-gnueabihf"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="682a52fea5deb07238420d7197e2d7cc10d558872f008a9b6799fb5326c8e420"
+            _checksum_value="8975dd185f9e34f93733fdcd7ae7ae552ecd7d3bd5792ff06ab3dc104f50e327"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -312,7 +312,7 @@ download_binary_and_run_installer() {
             _arch="armv7-unknown-linux-musl-staticeabihf"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="4062b9eb018afdde9b3dfeceabe41aad4cc5ea7fe658b74fda0e8f36decef507"
+            _checksum_value="b1cb2600a61c8d780a7ef365f69f4a336e4657494e13b9a757b4d10bb55d65af"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -326,7 +326,7 @@ download_binary_and_run_installer() {
             _arch="i686-pc-windows-msvc"
             _zip_ext=".zip"
             _checksum_style="sha256"
-            _checksum_value="cbf375fe6bf8a4e9ffb2f09c1ff4f8ed29ba96594a604749f84fa4e08c9a4586"
+            _checksum_value="c5fb5da8a9578ccaf9dadd3622413c347661847ededb4a93d9d3dbf9304a9ea4"
             _bins="uv.exe uvx.exe uvw.exe"
             _bins_js_array='"uv.exe","uvx.exe","uvw.exe"'
             _libs=""
@@ -340,7 +340,7 @@ download_binary_and_run_installer() {
             _arch="i686-unknown-linux-gnu"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="d943d0c0af37ad884bef24972753f7c93e5765b458e6492a3eb0c2b855c83a58"
+            _checksum_value="ab2d67fa9d3cfbdfa616b6e91eda4ae0d159dca09b446226935458f9cd28bd3e"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -354,7 +354,7 @@ download_binary_and_run_installer() {
             _arch="i686-unknown-linux-musl-static"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="9ab3d4ae061abcb8b000d7b472236f09998ddd466215753fc2eb4cdf372ba147"
+            _checksum_value="bc894f6f1c6aa2caef10caa3890948c2fec5159c678bae432c5aab88c2a71961"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -368,7 +368,7 @@ download_binary_and_run_installer() {
             _arch="powerpc64le-unknown-linux-gnu"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="2e6beb653888d2d2721b46d3d8aa328a2339a6cc20d4df98bbf206e728a92174"
+            _checksum_value="7d7fccdd92328b3732bffc1ded64d430f8bd7a59dc575e4804256f907f10c957"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -382,7 +382,7 @@ download_binary_and_run_installer() {
             _arch="riscv64gc-unknown-linux-gnu"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="38071e8f894acb0629a6f72017489e23642c1acee82953e3060635dd251cba8e"
+            _checksum_value="279a560bb492e92275ab96b1b601fc2a2feec84499d8b67160e07001496602b7"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -396,7 +396,7 @@ download_binary_and_run_installer() {
             _arch="riscv64gc-unknown-linux-musl-static"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="268ac2854b3c56370d68e94d819f5a3ee2dd7dfe81b17135d080a3648276d3b7"
+            _checksum_value="f24d2434251e9a9ea4b1dec014e28299a936fc387087ae953677c389b21f09f5"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -410,7 +410,7 @@ download_binary_and_run_installer() {
             _arch="s390x-unknown-linux-gnu"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="2192d8fb1d72860e8c0a85ccb074dcd4de0369c9fbd52a9041e16d5ba3f4467f"
+            _checksum_value="ac48ff502ee64983b904bcbe73559409f9a0ca950c788cd4ea77db510258f233"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -424,7 +424,7 @@ download_binary_and_run_installer() {
             _arch="x86_64-apple-darwin"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="5296d5aa2b9143360405eea866f8ef4d5dc8986b164eb0dc35e8f876a9304d30"
+            _checksum_value="96d773bf5fda4f9b08c4444847f9183d1c14bc8a28ff9c0490e261a8fc6e5309"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -438,7 +438,7 @@ download_binary_and_run_installer() {
             _arch="x86_64-pc-windows-msvc"
             _zip_ext=".zip"
             _checksum_style="sha256"
-            _checksum_value="f65744f94072152b1f86ba2aace4d01f1124d9a8ecb235805039e3718c36cac2"
+            _checksum_value="e94225dea91e051472847bd6d146d7d66c4f54ffcd1f106678866a99580845f9"
             _bins="uv.exe uvx.exe uvw.exe"
             _bins_js_array='"uv.exe","uvx.exe","uvw.exe"'
             _libs=""
@@ -452,7 +452,7 @@ download_binary_and_run_installer() {
             _arch="x86_64-unknown-linux-gnu"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="173d95a0c32d18c896c46ba6fafbf3cf9c14ab74b033f81b76c883ef492a976b"
+            _checksum_value="4ae93e0f148a18434cc094072547cec88912fc4a72b984183c7d0d0e9586cb5e"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
@@ -466,7 +466,7 @@ download_binary_and_run_installer() {
             _arch="x86_64-unknown-linux-musl-static"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
-            _checksum_value="848d0e261119e5b8f35db10164635e46a48bec29ceb1f8ec14a6fc76004973ee"
+            _checksum_value="3343303ad6b4f9537ae0abfb36f1926a90c0445ba8f23d0e0a840a66a124cffd"
             _bins="uv uvx"
             _bins_js_array='"uv","uvx"'
             _libs=""
